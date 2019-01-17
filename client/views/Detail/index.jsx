@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getTopicDetail, clearTopicDetail } from 'store/actions/topicAction';
-import "./index.less";
+import { getTopicDetailAction, clearTopicDetailAction } from 'store/actions/topicAction';
+import './index.less';
 
 class Detail extends Component {
   componentDidMount() {
     this.getTopicDetail();
   }
+
   componentWillUnmount() {
     const {
-      clearTopicDetail
+      clearTopicDetail,
     } = this.props;
     clearTopicDetail();
   }
@@ -18,38 +19,38 @@ class Detail extends Component {
     const {
       match: {
         params: {
-          id
-        }
+          id,
+        },
       },
-      getTopicDetail
+      getTopicDetail,
     } = this.props;
     getTopicDetail({
       id,
-      mdrender: true
+      mdrender: true,
     });
   }
 
   render() {
     const {
-      topicDetail
+      topicDetail,
     } = this.props;
     return (
       <div className="topicContent">
         <h1>{topicDetail.title}</h1>
-        <hr/>
-        <div dangerouslySetInnerHTML={{__html: topicDetail.content}} />
+        <hr />
+        <div dangerouslySetInnerHTML={{ __html: topicDetail.content }} />
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  ...state.topic
+  ...state.topic,
 })
 
 const mapDispatchToProps = dispatch => ({
-  getTopicDetail: params => getTopicDetail(dispatch, params),
-  clearTopicDetail: () => clearTopicDetail(dispatch)
+  getTopicDetail: params => dispatch(getTopicDetailAction(params)),
+  clearTopicDetail: () => dispatch(clearTopicDetailAction()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);

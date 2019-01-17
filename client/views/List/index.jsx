@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { List, Avatar, Tag } from 'antd';
 
-import { getTopic } from 'store/actions/topicAction';
+import { getTopicAction } from 'store/actions/topicAction';
 
 import './index.less';
 
@@ -14,7 +14,7 @@ class ListPage extends Component {
 
   getTopic = () => {
     const {
-      getTopic
+      getTopic,
     } = this.props;
     getTopic({
       mdrender: false,
@@ -23,35 +23,34 @@ class ListPage extends Component {
 
   render() {
     const {
-      testNum,
       topics,
     } = this.props;
     return (
       <div className="topicList">
         {
           <List
-          bordered={true}
-          itemLayout="horizontal"
-          dataSource={topics}
-          renderItem={item => (
-            <List.Item>
-              <List.Item.Meta
-                avatar={<Avatar src={item.author.avatar_url} />}
-                title={
-                  <section>
-                    {
-                      item.top ? <Tag color="#2db7f5">置顶</Tag> : null
-                    }
-                    <Link to={`/detail/${item.id}`}>{item.title}</Link>
-                  </section>
-                }
-                description={
-                  <div className="topic-content">{item.content}</div>
-                }
-              />
-            </List.Item>
-          )}
-        />
+            bordered
+            itemLayout="horizontal"
+            dataSource={topics}
+            renderItem={item => (
+              <List.Item>
+                <List.Item.Meta
+                  avatar={<Avatar src={item.author.avatar_url} />}
+                  title={(
+                    <section>
+                      {
+                        item.top ? <Tag color="#2db7f5">置顶</Tag> : null
+                      }
+                      <Link to={`/detail/${item.id}`}>{item.title}</Link>
+                    </section>
+                  )}
+                  description={
+                    <div className="topic-content">{item.content}</div>
+                  }
+                />
+              </List.Item>
+            )}
+          />
         }
       </div>
     );
@@ -59,11 +58,11 @@ class ListPage extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state.topic
+  ...state.topic,
 })
 
 const mapDispatchToProps = dispatch => ({
-  getTopic: params => getTopic(dispatch, params)
+  getTopic: params => dispatch(getTopicAction(params)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListPage);

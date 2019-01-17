@@ -1,20 +1,20 @@
-import  { SAVE }  from '../actions/topicAction';
+import { SAVE } from '../actions/topicAction';
 
 const initialState = {
   topicDetail: '',
-  topics: []
+  topics: [],
 }
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   const {
     type,
-    payload
+    payload,
   } = action;
   switch (type) {
     case SAVE: {
       return {
         ...state,
-        ...payload
+        ...payload,
       }
     }
     default:

@@ -35,6 +35,12 @@ const webpackConfig =  {
         loader: "babel-loader"
       },
       {
+        enforce: 'pre',
+        test: /\.(js|jsx)$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/
+      },
+      {
         test: /\.(css|less)$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
