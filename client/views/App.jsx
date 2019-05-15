@@ -1,5 +1,6 @@
 import React from 'react';
+import List from './List';
 
-export default props => (
-  <h1>Hello React!!!</h1>
+export default () => (
+  <List />
 )
