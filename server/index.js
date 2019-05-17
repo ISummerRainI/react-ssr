@@ -12,15 +12,12 @@ if (!isDev) {
 
   app.use('/public', express.static(path.join(__dirname, '../dist')));
   app.get('*', (req, res, next) => {
-    const appString = ReactSSR.renderToString(serverEntry);
-    res.send(template.replace('<!-- app -->', appString));
+    serverRender(serverEntry, template, req, res)
   });
 } else {
   const devStatic = require('./util/dev-static');
   devStatic(app);
 }
-
-
 
 app.listen(3001, () => {
   console.log('server is runing at: http://127.0.0.1:3001');

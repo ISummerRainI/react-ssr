@@ -1,6 +1,4 @@
 import React from 'react';
-import List from './List';
+import Router from '../config/router';
 
-export default () => (
-  <List />
-)
+export default () => <Router />

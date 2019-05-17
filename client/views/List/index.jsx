@@ -55,7 +55,7 @@ class ListPage extends Component {
                       {
                         item.top ? <Tag color="#2db7f5">置顶</Tag> : null
                       }
-                      <a href={`/detail/${item.id}`}>{item.title}</a>
+                      <Link to={`/detail/${item.id}`}>{item.title}</Link>
                     </section>
                   )}
                   description={

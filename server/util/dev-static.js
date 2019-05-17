@@ -3,8 +3,8 @@ const axios = require('axios');
 const path = require('path');
 const webpack = require('webpack');
 const MemoryFs = require('memory-fs');
-const ReactSSR = require('react-dom/server');
 const proxy = require('http-proxy-middleware');
+const serverRender = require('./server-render');
 
 const serverConfig = require('../../build/webpack.config.server');
 
@@ -45,8 +45,7 @@ module.exports = function (app) {
   }));
   app.get('*', (req, res, next) => {
     getTemplate().then(template => {
-      const content = ReactSSR.renderToString(serverBundle);
-      res.send(template.replace('<!-- app -->', content));
+      serverRender(serverBundle, template, req, res)
     }).catch(next)
   });
 }
