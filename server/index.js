@@ -7,7 +7,7 @@ const isDev = process.env.NODE_ENV === 'development';
 
 if (!isDev) {
   const fs = require('fs');
-  const serverEntry = require('../dist/server-entry.js').default;
+  const serverEntry = require('../dist/server-entry.js');
   const template = fs.readFileSync(path.join(__dirname, '../dist/index.html'), 'utf8');
 
   app.use('/public', express.static(path.join(__dirname, '../dist')));

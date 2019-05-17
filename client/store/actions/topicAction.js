@@ -3,50 +3,48 @@ import { get } from 'util/Axios';
 export const SAVE = 'SAVE';
 
 export function getTopicAction(params) {
-  return (dispatch) => {
+  return new Promise((resolve, reject) => {
     get('/topics', params).then((res) => {
       const {
         data,
       } = res;
-      dispatch({
+      resolve({
         type: SAVE,
         payload: {
           topics: data,
         },
       })
     });
-  }
+  });
 }
 
 export function getTopicDetailAction(params) {
-  return (dispatch) => {
-    const {
-      id,
-      mdrender,
-    } = params;
+  const {
+    id,
+    mdrender,
+  } = params;
+  return new Promise((resolve, reject) => {
     get(`/topic/${id}`, {
       mdrender,
     }).then((res) => {
       const {
         data,
       } = res;
-      dispatch({
+      resolve({
         type: SAVE,
         payload: {
           topicDetail: data,
         },
       })
     })
-  }
+  })
 }
 
 export function clearTopicDetailAction() {
-  return (dispatch) => {
-    dispatch({
-      type: SAVE,
-      payload: {
-        topicDetail: {},
-      },
-    })
-  }
+  return ({
+    type: SAVE,
+    payload: {
+      topicDetail: {},
+    },
+  })
 }
