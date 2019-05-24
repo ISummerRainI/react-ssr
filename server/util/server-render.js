@@ -1,6 +1,7 @@
-
+const serialize = require('serialize-javascript')
 const ReactSSR = require('react-dom/server');
 const asyncBootstrap = require('react-async-bootstrapper');
+const ejs = require('ejs');
 
 module.exports = (serverBundle, template, req, res) => {
   const createStoreMap = serverBundle.createStoreMap;
@@ -15,8 +16,13 @@ module.exports = (serverBundle, template, req, res) => {
       res.send();
       return;
     }
+    const state = serialize(store.getState());
     const content = ReactSSR.renderToString(app);
-    res.send(template.replace('<!-- app -->', content));
+    const html = ejs.render(template, {
+      appString: content,
+      initialState: state
+    })
+    res.send(html);
 
   })
 }

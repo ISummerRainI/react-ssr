@@ -10,7 +10,7 @@ const serverConfig = require('../../build/webpack.config.server');
 
 const getTemplate = () => {
   return new Promise((resolve, reject) => {
-    axios.get('http://127.0.0.1:3000/public/index.html').then(res => {
+    axios.get('http://127.0.0.1:3000/public/server.ejs').then(res => {
       resolve(res.data);
     }).catch(reject);
   })

@@ -9,6 +9,10 @@ import './index.less';
 
 class ListPage extends Component {
   componentDidMount() {
+    const {
+      topics,
+    } = this.props;
+    if (Array.isArray(topics) && topics.length) return;
     this.getTopic();
   }
 

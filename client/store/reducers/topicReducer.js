@@ -1,7 +1,7 @@
 import { SAVE } from '../actions/topicAction';
 
 const initialState = {
-  topicDetail: '',
+  topicDetail: {},
   topics: [],
 }
 

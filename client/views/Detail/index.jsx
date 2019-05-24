@@ -5,6 +5,11 @@ import './index.less';
 
 class Detail extends Component {
   componentDidMount() {
+    const {
+      topicDetail,
+    } = this.props;
+    console.log(topicDetail)
+    if (topicDetail.id) return;
     this.getTopicDetail();
   }
 

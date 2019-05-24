@@ -5,7 +5,7 @@ import App from 'views/App';
 import createStoreMap from './store';
 
 export default (store, routerContext, url) => (
-  <Provider store={createStoreMap()}>
+  <Provider store={store}>
     <StaticRouter context={routerContext} location={url}>
       <App />
     </StaticRouter>

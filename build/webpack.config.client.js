@@ -65,6 +65,10 @@ const webpackConfig =  {
         title: 'ReactSSR',
         filename: 'index.html'
     }),
+    new HtmlWebpackPlugin({
+      template: 'ejs-compiled-loader!' + path.join(__dirname, '../client/server.template.ejs'),
+      filename: 'server.ejs'
+    }),
     new ExtractTextPlugin('app_[hash:8].css')
   ],
 }
