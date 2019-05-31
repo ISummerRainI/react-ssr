@@ -1,6 +1,7 @@
 const serialize = require('serialize-javascript')
 const ReactSSR = require('react-dom/server');
 const asyncBootstrap = require('react-async-bootstrapper');
+const Helmet = require('react-helmet').default;
 const ejs = require('ejs');
 
 module.exports = (serverBundle, template, req, res) => {
@@ -18,7 +19,14 @@ module.exports = (serverBundle, template, req, res) => {
     }
     const state = serialize(store.getState());
     const content = ReactSSR.renderToString(app);
+    // console.log(content)
+    const helmet = Helmet.renderStatic();
+    // console.log(helmet);
+
     const html = ejs.render(template, {
+      title: helmet.title.toString(),
+      meta: helmet.meta.toString(),
+      link: helmet.link.toString(),
       appString: content,
       initialState: state
     })

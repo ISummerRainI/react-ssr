@@ -1,6 +1,7 @@
 const express = require('express');
 const ReactSSR = require('react-dom/server');
 const path = require('path');
+const serverRender = require('./util/server-render');
 
 const app = express();
 const isDev = process.env.NODE_ENV === 'development';

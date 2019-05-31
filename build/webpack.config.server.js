@@ -1,7 +1,6 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-
 module.exports = {
   mode: 'production',
   target: 'node',
@@ -49,6 +48,7 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('server-entry.css')
-  ]
+  ],
+  // externals: ['react-helmet']
   // externals: Object.keys(require('../package.json').dependencies)
 };

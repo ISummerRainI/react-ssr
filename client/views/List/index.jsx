@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { List, Avatar, Tag } from 'antd';
+import { Helmet } from 'react-helmet';
 
 import { getTopicAction } from 'store/actions/topicAction';
 
@@ -35,6 +36,10 @@ class ListPage extends Component {
     } = this.props;
     return (
       <div className="topicList">
+        <Helmet>
+          <title>List Page</title>
+          <meta name="description" content="this is list Page" />
+        </Helmet>
         {
           <List
             bordered

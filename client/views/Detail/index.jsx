@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getTopicDetailAction, clearTopicDetailAction } from 'store/actions/topicAction';
+import { Helmet } from 'react-helmet';
 import './index.less';
 
 class Detail extends Component {
@@ -45,6 +46,10 @@ class Detail extends Component {
     } = this.props;
     return (
       <div className="topicContent">
+        <Helmet>
+          <title>Detail Page</title>
+          <meta name="description" content="this is Detail Page" />
+        </Helmet>
         <h1>{topicDetail.title}</h1>
         <hr />
         <div dangerouslySetInnerHTML={{ __html: topicDetail.content }} />

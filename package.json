@@ -7,7 +7,7 @@
     "clear": "rimraf dist",
     "dev:client": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.client.js",
     "dev:server": "cross-env NODE_ENV=development nodemon server/index.js",
-    "start:server": "node server/index.js",
+    "start": "node server/index.js",
     "build:client": "webpack --config build/webpack.config.client.js --mode=production",
     "build:server": "webpack --config build/webpack.config.server.js --mode=production",
     "build": "npm run clear && npm run build:client && npm run build:server"
@@ -24,6 +24,7 @@
     "react": "^16.7.0",
     "react-async-bootstrapper": "^2.1.1",
     "react-dom": "^16.7.0",
+    "react-helmet": "^5.2.1",
     "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
